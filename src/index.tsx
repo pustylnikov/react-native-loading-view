@@ -120,8 +120,7 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
   }
 
   /**
-   *
-   * @param prevProps
+   * Calls show or hide the fallback depending on the value of the loading property
    */
   componentDidUpdate (prevProps: Readonly<LoadingViewProps>) {
     if (prevProps.loading !== this.props.loading) {
