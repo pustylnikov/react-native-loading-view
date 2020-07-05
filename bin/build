@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -rf ./lib
+
+yarn run lint
+
+tsc --project tsconfig.app.json
+
+prettier -config ../.prettierrc.js --write ./lib

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -rf ./ios/Pods
+
+npx pod-install
