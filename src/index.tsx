@@ -142,14 +142,15 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
    * Render component
    */
   render () {
-    const { animated, children, fallback, loading, ...props } = this.props
+    const { animated, children, fallback, loading, style, ...props } = this.props
     const { visibleFallback } = this.state
     return (
-      <View {...props}>
+      <View style={[styles.containerView, style]} {...props}>
         {
           animated ? (
             <Animated.View
               style={[
+                styles.animatedView,
                 {
                   opacity: this.animation.interpolate({
                     inputRange: [0, 1],
@@ -191,12 +192,17 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
 }
 
 const styles = StyleSheet.create({
+  containerView: {
+    flex: 1,
+  },
+  animatedView: {
+    flex: 1,
+  },
   fallbackView: {
     position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    backgroundColor: '#f00',
   },
 })
