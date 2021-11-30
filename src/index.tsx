@@ -1,6 +1,11 @@
 import React, { Component, ReactNode } from 'react'
 import { Animated, StyleSheet, View, ViewProps } from 'react-native'
 
+export enum RenderChildMode {
+  ALWAYS = 'always',
+  AFTER_LOADING = 'afterLoading'
+}
+
 export type LoadingViewProps = ViewProps & {
   loading: boolean
   fallback: ReactNode
@@ -8,6 +13,7 @@ export type LoadingViewProps = ViewProps & {
   hideDuration: number
   animated: boolean
   showContentDelay: number
+  renderChildMode: RenderChildMode
 }
 
 type LoadingViewState = {
@@ -25,6 +31,7 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
     hideDuration: 200,
     animated: true,
     showContentDelay: 0,
+    renderChildMode: RenderChildMode.AFTER_LOADING,
   }
 
   /**
@@ -142,7 +149,7 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
    * Render component
    */
   render () {
-    const { animated, children, fallback, loading, style, ...props } = this.props
+    const { animated, children, fallback, loading, style, renderChildMode, ...props } = this.props
     const { visibleFallback } = this.state
     return (
       <View style={[styles.containerView, style]} {...props}>
@@ -159,10 +166,10 @@ export default class LoadingView extends Component<LoadingViewProps, LoadingView
                 },
               ]}
             >
-              {loading ? null : children}
+              {renderChildMode === RenderChildMode.ALWAYS || !loading ? children : null}
             </Animated.View>
           ) : (
-            loading ? null : children
+            renderChildMode === RenderChildMode.ALWAYS || !loading ? children : null
           )
         }
 
