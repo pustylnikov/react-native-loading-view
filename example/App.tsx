@@ -1,41 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
-import LoadingView from '@anvilapp/react-native-loading-view'
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import LoadingView from '@anvilapp/react-native-loading-view';
 import {
   Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
   ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen'
-import Loader from './Loader'
+} from 'react-native/Libraries/NewAppScreen';
+import Loader from './Loader';
 
-declare const global: { HermesInternal: null | {} }
+declare const global: { HermesInternal: null | {} };
 
 const App = () => {
-
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
-    }, 3000)
-  }, [])
+      setLoading(false);
+    }, 3000);
+  }, []);
 
   return (
     <>
-      <StatusBar barStyle="dark-content"/>
+      <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.safeAreaView}>
         <LoadingView
           style={styles.loadingView}
           loading={loading}
-          fallback={<Loader/>}
+          fallback={<Loader />}
           animated={true}
+          useInteractionManager={true}
         >
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <Header/>
+          <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
+            <Header />
             {global.HermesInternal == null ? null : (
               <View style={styles.engine}>
                 <Text style={styles.footer}>Engine: Hermes</Text>
@@ -45,36 +43,34 @@ const App = () => {
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Step One</Text>
                 <Text style={styles.sectionDescription}>
-                  Edit <Text style={styles.highlight}>App.tsx</Text> to change
-                  this screen and then come back to see your edits.
+                  Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see
+                  your edits.
                 </Text>
               </View>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>See Your Changes</Text>
                 <Text style={styles.sectionDescription}>
-                  <ReloadInstructions/>
+                  <ReloadInstructions />
                 </Text>
               </View>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Debug</Text>
                 <Text style={styles.sectionDescription}>
-                  <DebugInstructions/>
+                  <DebugInstructions />
                 </Text>
               </View>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Learn More</Text>
-                <Text style={styles.sectionDescription}>
-                  Read the docs to discover what to do next:
-                </Text>
+                <Text style={styles.sectionDescription}>Read the docs to discover what to do next:</Text>
               </View>
-              <LearnMoreLinks/>
+              <LearnMoreLinks />
             </View>
           </ScrollView>
         </LoadingView>
       </SafeAreaView>
     </>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   safeAreaView: {
@@ -119,6 +115,6 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
-})
+});
 
-export default App
+export default App;

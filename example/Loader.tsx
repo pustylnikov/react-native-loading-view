@@ -1,13 +1,13 @@
-import React from 'react'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import React from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 const Loader = () => {
   return (
     <View style={styles.loaderView}>
-      <ActivityIndicator size="large" color="#fff"/>
+      <ActivityIndicator size="large" color="#fff" />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   loaderView: {
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-})
+});
 
-export default React.memo(Loader)
+export default React.memo(Loader);
